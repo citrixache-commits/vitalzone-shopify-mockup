@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* ═══════════ SVG Icons ═══════════ */
 const Icons = {
@@ -144,10 +144,38 @@ const quantityOffers = [
 
 function TopBar() {
   return (
-    <div className="gradient-primary text-white text-center text-sm py-2.5 px-4 font-medium tracking-wide">
-      <span className="animate-shimmer inline-block">
-        ✨ TRANSPORT GRATUIT la comenzi peste 150 RON &nbsp;|&nbsp; Livrare în 24-48h &nbsp;|&nbsp; Plata la livrare
+    <div className="gradient-primary text-white text-center py-3 px-4 font-bold tracking-wide">
+      <span className="animate-shimmer inline-block text-sm md:text-base">
+        🔥 TRANSPORT GRATUIT la comenzi peste 150 RON &nbsp;|&nbsp; ⚡ Livrare în 24h &nbsp;|&nbsp; 💰 Plata la livrare
       </span>
+    </div>
+  );
+}
+
+function CountdownTimer() {
+  const [time, setTime] = useState({ h: 2, m: 47, s: 33 });
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime((prev) => {
+        let { h, m, s } = prev;
+        s--;
+        if (s < 0) { s = 59; m--; }
+        if (m < 0) { m = 59; h--; }
+        if (h < 0) { h = 23; m = 59; s = 59; }
+        return { h, m, s };
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return (
+    <div className="flex items-center gap-1.5">
+      {[pad(time.h), pad(time.m), pad(time.s)].map((v, i) => (
+        <span key={i} className="flex items-center gap-1.5">
+          <span className="bg-gray-900 text-white font-extrabold text-lg md:text-xl px-2.5 py-1 rounded-lg min-w-[2.5rem] text-center tabular-nums">{v}</span>
+          {i < 2 && <span className="text-sale font-bold text-xl">:</span>}
+        </span>
+      ))}
     </div>
   );
 }
@@ -156,65 +184,64 @@ function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100/50">
+    <header className="sticky top-0 z-50 bg-white shadow-md">
       <TopBar />
-      <div className="site-container py-3.5 flex items-center justify-between gap-4">
-        {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
+      <div className="site-container py-4 flex items-center justify-between gap-4">
+        {/* Logo — bigger */}
+        <a href="/" className="flex items-center gap-3 shrink-0 group">
+          <div className="w-12 h-12 gradient-primary rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-primary/30">
             V
           </div>
-          <span className="text-xl font-bold text-gray-900">
+          <span className="text-2xl font-extrabold text-gray-900">
             Vital<span className="text-gradient-primary">Zone</span>
-            <span className="text-accent text-sm font-semibold">.ro</span>
+            <span className="text-accent text-sm font-bold">.ro</span>
           </span>
         </a>
 
-        {/* Search */}
-        <div className="hidden md:flex flex-1 max-w-lg">
-          <div className="relative w-full group">
+        {/* Search — bigger */}
+        <div className="hidden md:flex flex-1 max-w-xl">
+          <div className="relative w-full">
             <input
               type="text"
               placeholder="Caută produse: orteze, masaj, fitness..."
-              className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-3 px-5 pr-14 text-sm focus:outline-none focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-gray-400"
+              className="w-full bg-gray-50 border-2 border-gray-200 rounded-2xl py-3.5 px-6 pr-14 text-base focus:outline-none focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all placeholder:text-gray-400"
             />
-            <button className="absolute right-1.5 top-1.5 gradient-primary text-white rounded-xl p-2.5 hover:shadow-lg hover:shadow-primary/30 transition-all">
+            <button className="absolute right-2 top-2 gradient-primary text-white rounded-xl p-2.5 hover:shadow-lg hover:shadow-primary/30 transition-all">
               {Icons.search}
             </button>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-1">
-          <button className="md:hidden p-2.5 text-gray-500 hover:text-primary hover:bg-primary/5 rounded-xl transition-all">
+        <div className="flex items-center gap-2">
+          <button className="md:hidden p-2.5 text-gray-600 hover:text-primary rounded-xl transition-all">
             {Icons.search}
           </button>
-          <a href="#" className="hidden sm:flex p-2.5 text-gray-500 hover:text-primary hover:bg-primary/5 rounded-xl transition-all">
+          <a href="#" className="hidden sm:flex p-2.5 text-gray-600 hover:text-primary rounded-xl transition-all">
             {Icons.user}
           </a>
-          <a href="#" className="relative p-2.5 text-gray-500 hover:text-accent hover:bg-accent/5 rounded-xl transition-all">
+          <a href="#" className="relative p-2.5 text-gray-600 hover:text-accent rounded-xl transition-all">
             {Icons.cart}
-            <span className="absolute top-1 right-1 w-4 h-4 bg-accent text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+            <span className="absolute -top-0.5 -right-0.5 w-5 h-5 bg-sale text-white text-[11px] font-bold rounded-full flex items-center justify-center">
               0
             </span>
           </a>
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2.5 text-gray-500 hover:text-primary hover:bg-primary/5 rounded-xl transition-all">
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-2.5 text-gray-600">
             {mobileOpen ? Icons.close : Icons.menu}
           </button>
         </div>
       </div>
 
-      {/* Desktop nav */}
-      <nav className="hidden md:block border-t border-gray-100/50 bg-white/60 backdrop-blur-sm">
-        <div className="site-container flex items-center justify-center gap-0.5 overflow-x-auto">
+      {/* Desktop nav — BIGGER, BOLDER */}
+      <nav className="hidden md:block bg-gray-50 border-t-2 border-primary/10">
+        <div className="site-container flex items-center justify-center gap-1 overflow-x-auto py-1">
           {categories.map((cat) => (
             <a
               key={cat.slug}
               href={`#${cat.slug}`}
-              className="relative py-3.5 px-4 text-sm font-medium text-gray-600 hover:text-primary transition-colors whitespace-nowrap group"
+              className="py-3 px-5 text-base font-bold text-gray-700 hover:text-white hover:bg-primary rounded-xl transition-all whitespace-nowrap uppercase tracking-wide"
             >
               {cat.name}
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full group-hover:w-3/4 transition-all duration-300" />
             </a>
           ))}
         </div>
@@ -224,18 +251,17 @@ function Header() {
       {mobileOpen && (
         <nav className="md:hidden border-t border-gray-100 bg-white px-4 pb-4 animate-fade-in-up">
           <div className="py-3">
-            <input type="text" placeholder="Caută produse..." className="w-full bg-gray-50 border border-gray-200 rounded-2xl py-2.5 px-5 text-sm focus:outline-none focus:border-primary" />
+            <input type="text" placeholder="Caută produse..." className="w-full bg-gray-50 border-2 border-gray-200 rounded-2xl py-3 px-5 text-base focus:outline-none focus:border-primary" />
           </div>
           {categories.map((cat, i) => (
             <a
               key={cat.slug}
               href={`#${cat.slug}`}
-              className="flex items-center gap-3 py-3 px-3 text-sm font-medium text-gray-700 hover:text-primary hover:bg-primary/5 rounded-xl transition-all"
-              style={{ animationDelay: `${i * 0.05}s` }}
+              className="flex items-center gap-3 py-3 px-4 text-base font-bold text-gray-800 hover:text-white hover:bg-primary rounded-xl transition-all uppercase"
               onClick={() => setMobileOpen(false)}
             >
-              <span className={`w-8 h-8 rounded-lg bg-gradient-to-br ${cat.gradient} flex items-center justify-center`}>
-                <span className="text-white text-xs">{cat.name[0]}</span>
+              <span className={`w-9 h-9 rounded-lg bg-gradient-to-br ${cat.gradient} flex items-center justify-center`}>
+                <span className="text-white text-sm font-bold">{cat.name[0]}</span>
               </span>
               {cat.name}
             </a>
@@ -249,113 +275,69 @@ function Header() {
 function HeroSection() {
   return (
     <section className="relative gradient-hero overflow-hidden">
-      {/* Decorative blobs — symmetric */}
       <div className="absolute top-10 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-blob" />
       <div className="absolute bottom-10 right-1/4 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-blob" style={{ animationDelay: "2s" }} />
 
-      <div className="relative site-container py-16 md:py-24 lg:py-28 flex flex-col items-center gap-12">
-        {/* Content — always centered */}
+      <div className="relative site-container py-14 md:py-20 flex flex-col items-center gap-10">
         <div className="max-w-3xl text-center z-10">
-          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent font-semibold text-sm px-5 py-2 rounded-full mb-6 animate-fade-in-up">
-            <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            Reduceri de până la 50%
+          {/* Urgency badge */}
+          <div className="inline-flex items-center gap-2 bg-sale/10 text-sale font-bold text-sm md:text-base px-6 py-2.5 rounded-full mb-6 animate-fade-in-up">
+            <span className="w-2.5 h-2.5 bg-sale rounded-full animate-pulse" />
+            🔥 OFERTĂ LIMITATĂ — Până la 50% REDUCERE
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-[1.1] mb-6 animate-fade-in-up delay-100">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-[1.05] mb-6 animate-fade-in-up">
             Sănătatea Ta,
             <br />
             <span className="text-gradient-primary">Prioritatea Noastră</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-500 max-w-xl mx-auto mb-10 leading-relaxed animate-fade-in-up delay-200">
+          <p className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto mb-8 leading-relaxed animate-fade-in-up">
             Produse medicale și wellness de calitate superioară.
-            Livrare rapidă în toată România cu plata la livrare.
+            <strong className="text-gray-800"> Livrare GRATUITĂ. Plata la livrare.</strong>
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
-            <a href="#produse" className="group inline-flex items-center justify-center gradient-primary text-white font-semibold py-4 px-8 rounded-2xl transition-all hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] text-base">
-              Vezi Ofertele
-              <span className="ml-2 group-hover:translate-x-1 transition-transform">{Icons.arrow}</span>
+          {/* Countdown */}
+          <div className="flex flex-col items-center gap-3 mb-10 animate-fade-in-up">
+            <p className="text-sale font-bold text-sm uppercase tracking-widest">⏰ Oferta expiră în:</p>
+            <CountdownTimer />
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up">
+            <a href="#produse" className="group inline-flex items-center justify-center gradient-accent text-white font-extrabold py-5 px-10 rounded-2xl transition-all hover:shadow-2xl hover:shadow-accent/40 hover:scale-105 text-lg animate-pulse-ring">
+              👉 VEZI OFERTELE ACUM
             </a>
-            <a href="#categorii" className="inline-flex items-center justify-center bg-white border-2 border-gray-200 text-gray-700 font-semibold py-4 px-8 rounded-2xl hover:border-primary hover:text-primary hover:bg-primary/5 transition-all text-base">
+            <a href="#categorii" className="inline-flex items-center justify-center bg-white border-2 border-gray-300 text-gray-700 font-bold py-5 px-10 rounded-2xl hover:border-primary hover:text-primary transition-all text-lg">
               Categorii Produse
             </a>
           </div>
 
-          {/* Stats */}
-          <div className="flex items-center gap-8 mt-12 justify-center animate-fade-in-up delay-400">
+          {/* Stats — bigger */}
+          <div className="flex items-center gap-10 mt-12 justify-center animate-fade-in-up">
             {[
-              { value: "12K+", label: "Clienți Mulțumiți" },
+              { value: "12,847", label: "Clienți Mulțumiți" },
               { value: "200+", label: "Produse Premium" },
-              { value: "4.8", label: "Rating Mediu" },
+              { value: "⭐ 4.8/5", label: "Rating Mediu" },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <p className="text-2xl font-extrabold text-gray-900">{stat.value}</p>
-                <p className="text-xs text-gray-400 mt-0.5">{stat.label}</p>
+                <p className="text-3xl font-extrabold text-gray-900">{stat.value}</p>
+                <p className="text-sm text-gray-500 mt-1 font-medium">{stat.label}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Visual — centered below */}
-        <div className="flex justify-center relative z-10 animate-fade-in-up delay-200">
-          <div className="relative w-72 h-72 md:w-80 md:h-80">
-            {/* Main blob */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-accent/10 rounded-full animate-blob" />
-            <div className="absolute inset-4 bg-gradient-to-br from-primary/10 to-white rounded-full flex items-center justify-center">
-              <svg className="w-28 h-28 md:w-36 md:h-36 text-primary/60" fill="none" stroke="currentColor" strokeWidth={0.8} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-              </svg>
-            </div>
-
-            {/* Floating cards */}
-            <div className="absolute top-6 right-0 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-xl animate-float">
-              <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center text-white">
-                {Icons.truck}
-              </div>
-              <div>
-                <p className="font-bold text-sm text-gray-900">Livrare Gratuită</p>
-                <p className="text-xs text-gray-500">peste 150 RON</p>
-              </div>
-            </div>
-
-            <div className="absolute bottom-12 left-0 glass rounded-2xl px-4 py-3 flex items-center gap-3 shadow-xl animate-float-delay">
-              <div className="flex -space-x-1">
-                {Icons.star}{Icons.star}{Icons.star}{Icons.star}{Icons.star}
-              </div>
-              <div>
-                <p className="font-bold text-sm text-gray-900">4.8/5</p>
-                <p className="text-xs text-gray-500">12K+ recenzii</p>
-              </div>
-            </div>
-
-            <div className="absolute bottom-0 right-8 glass rounded-2xl px-4 py-3 shadow-xl animate-float" style={{ animationDelay: "1s" }}>
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
-                <p className="font-semibold text-sm text-gray-900">287 comenzi azi</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TrustBar() {
-  return (
-    <section className="relative bg-white border-y border-gray-100">
-      <div className="site-container py-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
-          {trustItems.map((item, i) => (
-            <div key={item.title} className="flex items-center gap-4 justify-center animate-fade-in-up" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="w-14 h-14 rounded-2xl bg-primary/5 flex items-center justify-center shrink-0">
-                {item.icon}
-              </div>
-              <div>
-                <p className="font-semibold text-gray-900 text-sm">{item.title}</p>
-                <p className="text-xs text-gray-500 mt-0.5">{item.desc}</p>
-              </div>
+        {/* Trust strip inline */}
+        <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 z-10 animate-fade-in-up">
+          {[
+            { icon: "🚚", text: "Livrare GRATUITĂ" },
+            { icon: "↩️", text: "Retur 30 Zile" },
+            { icon: "💰", text: "Plata la Livrare" },
+            { icon: "✅", text: "Produse Certificate" },
+          ].map((t) => (
+            <div key={t.text} className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-5 py-2.5 shadow-sm border border-gray-100">
+              <span className="text-xl">{t.icon}</span>
+              <span className="font-bold text-sm text-gray-800">{t.text}</span>
             </div>
           ))}
         </div>
@@ -363,6 +345,8 @@ function TrustBar() {
     </section>
   );
 }
+
+function TrustBar() { return null; }
 
 function ProductCard({ product, index }: { product: (typeof products)[0]; index: number }) {
   return (
@@ -398,18 +382,18 @@ function ProductCard({ product, index }: { product: (typeof products)[0]; index:
 
       {/* Info */}
       <div className="p-5 text-center">
-        <p className="text-xs font-semibold text-primary mb-1.5 tracking-wide uppercase">{product.category}</p>
-        <h3 className="font-semibold text-gray-900 text-sm mb-2.5 leading-snug line-clamp-2 group-hover:text-primary transition-colors">{product.name}</h3>
+        <p className="text-xs font-bold text-primary mb-1 tracking-widest uppercase">{product.category}</p>
+        <h3 className="font-bold text-gray-900 text-base mb-2 leading-snug line-clamp-2 group-hover:text-primary transition-colors">{product.name}</h3>
 
         <div className="flex items-center gap-1.5 mb-3 justify-center">
-          <div className="flex">{Icons.star}</div>
-          <span className="text-xs font-semibold text-gray-700">{product.rating}</span>
-          <span className="text-xs text-gray-400">({product.reviews})</span>
+          <div className="flex gap-0.5">{Icons.star}{Icons.star}{Icons.star}{Icons.star}{Icons.star}</div>
+          <span className="text-xs font-bold text-gray-700">({product.reviews})</span>
         </div>
 
         <div className="pt-3 border-t border-gray-100">
-          <span className="text-xs text-gray-400 line-through">{product.oldPrice} RON</span>
-          <p className="text-xl font-extrabold text-gradient-accent">{product.price} <span className="text-sm font-bold">RON</span></p>
+          <span className="text-sm text-gray-400 line-through">{product.oldPrice} RON</span>
+          <p className="text-2xl font-extrabold text-accent">{product.price} <span className="text-base font-bold">RON</span></p>
+          <p className="text-xs font-bold text-green-600 mt-1">Economisești {product.oldPrice - product.price} RON</p>
         </div>
       </div>
     </div>
@@ -745,14 +729,25 @@ function Footer() {
   );
 }
 
-function FloatingButton() {
+function FloatingButtons() {
   return (
-    <a
-      href="#produse"
-      className="fixed bottom-6 right-6 z-50 gradient-accent text-white font-bold py-3.5 px-7 rounded-2xl shadow-2xl shadow-accent/40 transition-all hover:scale-105 hover:shadow-accent/60 animate-pulse-ring flex items-center gap-2 text-sm"
-    >
-      <span>🛒</span> COMANDĂ ACUM
-    </a>
+    <>
+      {/* WhatsApp — left */}
+      <a
+        href="#"
+        className="fixed bottom-6 left-6 z-50 bg-green-500 hover:bg-green-600 text-white font-bold p-4 rounded-full shadow-2xl shadow-green-500/40 transition-all hover:scale-110 flex items-center justify-center"
+        title="WhatsApp"
+      >
+        {Icons.whatsapp}
+      </a>
+      {/* CTA — right, big sanatateforte style */}
+      <a
+        href="#produse"
+        className="fixed bottom-6 right-6 z-50 gradient-accent text-white font-extrabold py-4 px-8 rounded-full shadow-2xl shadow-accent/50 transition-all hover:scale-110 animate-pulse-ring flex items-center gap-2 text-base"
+      >
+        👉🏻 COMANDĂ ACUM
+      </a>
+    </>
   );
 }
 
@@ -772,7 +767,7 @@ export default function Home() {
         <Newsletter />
       </main>
       <Footer />
-      <FloatingButton />
+      <FloatingButtons />
     </>
   );
 }
