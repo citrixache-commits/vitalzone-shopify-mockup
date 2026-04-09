@@ -9,7 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "VitalZone.ro — Sănătatea Ta, Prioritatea Noastră",
+  title: "SanoViva.ro — Sănătatea Ta, Prioritatea Noastră",
   description:
     "Magazin online de produse medicale și wellness. Orteze, aparate de masaj, fitness și încălțăminte ortopedică. Livrare rapidă în toată România.",
 };

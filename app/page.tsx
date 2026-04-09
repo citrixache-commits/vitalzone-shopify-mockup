@@ -190,10 +190,10 @@ function Header() {
         {/* Logo — bigger */}
         <a href="/" className="flex items-center gap-3 shrink-0 group">
           <div className="w-12 h-12 gradient-primary rounded-2xl flex items-center justify-center text-white font-extrabold text-xl shadow-lg shadow-primary/30">
-            V
+            S
           </div>
           <span className="text-2xl font-extrabold text-gray-900">
-            Vital<span className="text-gradient-primary">Zone</span>
+            Sano<span className="text-gradient-primary">Viva</span>
             <span className="text-accent text-sm font-bold">.ro</span>
           </span>
         </a>
@@ -648,8 +648,8 @@ function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-primary/30">V</div>
-              <span className="text-xl font-bold">Vital<span className="text-primary">Zone</span><span className="text-accent text-sm">.ro</span></span>
+              <div className="w-10 h-10 gradient-primary rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-primary/30">S</div>
+              <span className="text-xl font-bold">Sano<span className="text-primary">Viva</span><span className="text-accent text-sm">.ro</span></span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Magazin online de produse medicale și wellness. Calitate, prețuri accesibile și livrare rapidă în toată România.
@@ -699,7 +699,7 @@ function Footer() {
                 </div>
                 <div>
                   <p className="text-gray-400">Email</p>
-                  <a href="#" className="text-white font-medium hover:text-primary transition-colors">contact@vitalzone.ro</a>
+                  <a href="#" className="text-white font-medium hover:text-primary transition-colors">contact@sanoviva.ro</a>
                 </div>
               </li>
               <li className="flex items-center gap-3">
@@ -717,7 +717,7 @@ function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-gray-500">© 2026 VitalZone.ro — Toate drepturile rezervate</p>
+          <p className="text-sm text-gray-500">© 2026 SanoViva.ro — Toate drepturile rezervate</p>
           <div className="flex items-center gap-3">
             {["Visa", "Mastercard", "COD", "Transfer"].map((m) => (
               <div key={m} className="px-3 py-1.5 bg-white/5 rounded-lg text-xs text-gray-400 font-medium">{m}</div>
