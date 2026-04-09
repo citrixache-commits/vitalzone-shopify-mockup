@@ -41,7 +41,7 @@
   .gradient-primary { background: linear-gradient(135deg, #00BCD4, #00838F); }
   .gradient-accent  { background: linear-gradient(135deg, #FF7043, #E64A19); }
   .gradient-dark    { background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%); }
-  .gradient-hero    { background: linear-gradient(160deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); }
+  .gradient-hero    { background: linear-gradient(160deg, #F0FDFA 0%, #ffffff 50%, #FFF7ED 100%); }
   .gradient-mesh {
     background:
       radial-gradient(ellipse at 20% 50%, rgba(0,188,212,0.06) 0%, transparent 50%),

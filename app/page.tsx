@@ -166,8 +166,8 @@ function CountdownTimer() {
       {[pad(time.h), pad(time.m), pad(time.s)].map((v, i) => (
         <span key={i} className="flex items-center gap-3">
           <span className="flex flex-col items-center">
-            <span className="glass rounded-2xl px-4 py-3 min-w-[3.5rem] text-center">
-              <span className="text-2xl md:text-3xl font-extrabold text-white tabular-nums">{v}</span>
+            <span className="glass-light rounded-2xl px-4 py-3 min-w-[3.5rem] text-center">
+              <span className="text-2xl md:text-3xl font-extrabold text-slate-900 tabular-nums">{v}</span>
             </span>
             <span className="text-[10px] font-semibold tracking-[0.2em] text-slate-500 mt-1.5">{labels[i]}</span>
           </span>
@@ -294,25 +294,25 @@ function HeroSection() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
 
       {/* Subtle grid overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "40px 40px" }} />
+      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #00838F 1px, transparent 0)", backgroundSize: "40px 40px" }} />
 
       <div className="relative site-container py-20 md:py-28 lg:py-32 flex flex-col items-center gap-12">
         <div className="max-w-3xl text-center z-10">
           {/* Urgency badge */}
-          <div className="inline-flex items-center gap-2.5 glass rounded-full px-5 py-2 mb-8 animate-fade-in-up">
+          <div className="inline-flex items-center gap-2.5 bg-primary/10 border border-primary/20 rounded-full px-5 py-2 mb-8 animate-fade-in-up">
             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            <span className="text-sm font-semibold text-white/90 tracking-wide">Oferta limitata - Pana la 50% reducere</span>
+            <span className="text-sm font-semibold text-primary-dark tracking-wide">Oferta limitata - Pana la 50% reducere</span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-white leading-[1.05] mb-6 animate-fade-in-up">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.05] mb-6 animate-fade-in-up">
             Sanatatea Ta,
             <br />
             <span className="text-gradient-primary">Prioritatea Noastra</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up">
+          <p className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up">
             Produse medicale si wellness de calitate superioara.
-            <span className="text-white font-medium"> Livrare gratuita. Plata la livrare.</span>
+            <span className="text-slate-800 font-medium"> Livrare gratuita. Plata la livrare.</span>
           </p>
 
           {/* Countdown */}
@@ -329,6 +329,12 @@ function HeroSection() {
               Vezi Ofertele Acum
               <span className="group-hover:translate-x-1 transition-transform">{Icons.arrow}</span>
             </a>
+            <a
+              href="#categorii"
+              className="inline-flex items-center justify-center gap-2 border-2 border-slate-300 text-slate-700 font-bold py-4 px-10 rounded-full transition-all hover:border-primary hover:text-primary hover:scale-[1.03] text-base"
+            >
+              Categorii Produse
+            </a>
           </div>
         </div>
 
@@ -340,9 +346,9 @@ function HeroSection() {
             { icon: Icons.cash, text: "Plata la Livrare" },
             { icon: Icons.shield, text: "Produse Certificate" },
           ].map((t) => (
-            <div key={t.text} className="glass rounded-2xl px-5 py-3 flex items-center gap-3">
+            <div key={t.text} className="glass-light rounded-2xl px-5 py-3 flex items-center gap-3">
               <span className="text-primary">{t.icon}</span>
-              <span className="text-sm font-semibold text-white/90">{t.text}</span>
+              <span className="text-sm font-semibold text-slate-700">{t.text}</span>
             </div>
           ))}
         </div>
@@ -355,7 +361,7 @@ function HeroSection() {
             { value: "4.8/5", label: "Rating Mediu" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-extrabold text-white">{stat.value}</p>
+              <p className="text-3xl md:text-4xl font-extrabold text-slate-900">{stat.value}</p>
               <p className="text-xs text-slate-500 mt-1 font-medium tracking-wide">{stat.label}</p>
             </div>
           ))}
