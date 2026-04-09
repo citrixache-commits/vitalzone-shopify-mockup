@@ -1,10 +1,37 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
   <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00BCD4"/>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1221"/>
+      <stop offset="100%" stop-color="#152238"/>
+    </linearGradient>
+    <radialGradient id="bg-glow" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#00BCD4" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#00BCD4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4DD0E1"/>
+      <stop offset="50%" stop-color="#00BCD4"/>
       <stop offset="100%" stop-color="#00838F"/>
     </linearGradient>
+    <linearGradient id="border-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4DD0E1" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#00838F" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#FF7043" stop-opacity="0.15"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="20" result="blur"/>
+      <feFlood flood-color="#00BCD4" flood-opacity="0.4" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <rect width="512" height="512" rx="108" fill="url(#g)"/>
-  <text x="256" y="380" font-family="system-ui,-apple-system,sans-serif" font-size="340" font-weight="800" fill="white" text-anchor="middle">S</text>
+  <rect width="512" height="512" rx="108" fill="url(#bg)"/>
+  <rect width="512" height="512" rx="108" fill="url(#bg-glow)"/>
+  <rect x="3" y="3" width="506" height="506" rx="106" fill="none" stroke="url(#border-g)" stroke-width="1.5"/>
+  <text x="256" y="380" font-family="system-ui,-apple-system,BlinkMacSystemFont,sans-serif" font-size="340" font-weight="800" fill="url(#sg)" text-anchor="middle" filter="url(#glow)">S</text>
+  <circle cx="408" cy="408" r="26" fill="#FF7043" opacity="0.12"/>
+  <circle cx="408" cy="408" r="16" fill="#FF7043" opacity="0.85"/>
 </svg>
