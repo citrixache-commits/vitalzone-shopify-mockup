@@ -18,16 +18,16 @@
     </radialGradient>
     <linearGradient id="bottomDark" x1="0%" y1="55%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#003D4D" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#003D4D" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#003D4D" stop-opacity="0.45"/>
     </linearGradient>
     <linearGradient id="sg" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="100%" stop-color="#B2EBF2"/>
     </linearGradient>
     <filter id="sshadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
-      <feOffset dy="6"/>
-      <feFlood flood-color="#003D4D" flood-opacity="0.5"/>
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dy="5"/>
+      <feFlood flood-color="#003D4D" flood-opacity="0.55"/>
       <feComposite in2="SourceAlpha" operator="in"/>
       <feMerge>
         <feMergeNode/>
@@ -35,19 +35,87 @@
       </feMerge>
     </filter>
   </defs>
+
+  <!-- Background layers -->
   <rect width="512" height="512" rx="108" fill="url(#bg)"/>
   <rect width="512" height="512" rx="108" fill="url(#bottomDark)"/>
   <rect width="512" height="512" rx="108" fill="url(#topLight)"/>
   <rect width="512" height="240" rx="108" fill="url(#gloss)"/>
   <rect x="6" y="6" width="500" height="500" rx="102" fill="none" stroke="white" stroke-width="1.5" stroke-opacity="0.35"/>
-  <circle cx="256" cy="256" r="200" fill="none" stroke="white" stroke-width="2.5" stroke-opacity="0.3"/>
-  <circle cx="256" cy="256" r="188" fill="none" stroke="white" stroke-width="1" stroke-opacity="0.55"/>
-  <line x1="256" y1="56" x2="256" y2="76" stroke="white" stroke-width="3" stroke-opacity="0.6" stroke-linecap="round"/>
-  <line x1="256" y1="436" x2="256" y2="456" stroke="white" stroke-width="3" stroke-opacity="0.6" stroke-linecap="round"/>
-  <line x1="56" y1="256" x2="76" y2="256" stroke="white" stroke-width="3" stroke-opacity="0.6" stroke-linecap="round"/>
-  <line x1="436" y1="256" x2="456" y2="256" stroke="white" stroke-width="3" stroke-opacity="0.6" stroke-linecap="round"/>
-  <text x="256" y="358" font-family="Georgia, 'Times New Roman', Times, serif" font-size="300" font-weight="700" fill="url(#sg)" text-anchor="middle" filter="url(#sshadow)">S</text>
-  <circle cx="412" cy="412" r="28" fill="#FF7043" opacity="0.15"/>
-  <circle cx="412" cy="412" r="16" fill="#FF7043"/>
-  <circle cx="407" cy="406" r="4" fill="white" opacity="0.7"/>
+
+  <!-- Outer dashed compass ring -->
+  <circle cx="256" cy="256" r="222" fill="none" stroke="white" stroke-width="1.5" stroke-opacity="0.25" stroke-dasharray="2 7"/>
+
+  <!-- Main outer ring -->
+  <circle cx="256" cy="256" r="205" fill="none" stroke="white" stroke-width="2.5" stroke-opacity="0.5"/>
+
+  <!-- 8 pearl dots (4 cardinal large, 4 diagonal small) -->
+  <circle cx="256" cy="51" r="6" fill="white" opacity="0.85"/>
+  <circle cx="256" cy="461" r="6" fill="white" opacity="0.85"/>
+  <circle cx="51" cy="256" r="6" fill="white" opacity="0.85"/>
+  <circle cx="461" cy="256" r="6" fill="white" opacity="0.85"/>
+  <circle cx="111" cy="111" r="4" fill="white" opacity="0.6"/>
+  <circle cx="401" cy="111" r="4" fill="white" opacity="0.6"/>
+  <circle cx="111" cy="401" r="4" fill="white" opacity="0.6"/>
+  <circle cx="401" cy="401" r="4" fill="white" opacity="0.6"/>
+
+  <!-- Inner thin ring -->
+  <circle cx="256" cy="256" r="185" fill="none" stroke="white" stroke-width="1" stroke-opacity="0.6"/>
+
+  <!-- Laurel branch LEFT -->
+  <g opacity="0.5" fill="white">
+    <path d="M 70 256 Q 85 200 100 155 Q 110 125 115 95" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="82" cy="225" rx="11" ry="5" transform="rotate(-55 82 225)"/>
+    <ellipse cx="89" cy="195" rx="12" ry="5" transform="rotate(-50 89 195)"/>
+    <ellipse cx="96" cy="165" rx="12" ry="5" transform="rotate(-45 96 165)"/>
+    <ellipse cx="104" cy="135" rx="11" ry="5" transform="rotate(-40 104 135)"/>
+    <ellipse cx="110" cy="108" rx="10" ry="4" transform="rotate(-35 110 108)"/>
+    <path d="M 70 256 Q 85 312 100 357 Q 110 387 115 417" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="82" cy="287" rx="11" ry="5" transform="rotate(55 82 287)"/>
+    <ellipse cx="89" cy="317" rx="12" ry="5" transform="rotate(50 89 317)"/>
+    <ellipse cx="96" cy="347" rx="12" ry="5" transform="rotate(45 96 347)"/>
+    <ellipse cx="104" cy="377" rx="11" ry="5" transform="rotate(40 104 377)"/>
+    <ellipse cx="110" cy="404" rx="10" ry="4" transform="rotate(35 110 404)"/>
+  </g>
+
+  <!-- Laurel branch RIGHT (mirrored) -->
+  <g opacity="0.5" fill="white">
+    <path d="M 442 256 Q 427 200 412 155 Q 402 125 397 95" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="430" cy="225" rx="11" ry="5" transform="rotate(55 430 225)"/>
+    <ellipse cx="423" cy="195" rx="12" ry="5" transform="rotate(50 423 195)"/>
+    <ellipse cx="416" cy="165" rx="12" ry="5" transform="rotate(45 416 165)"/>
+    <ellipse cx="408" cy="135" rx="11" ry="5" transform="rotate(40 408 135)"/>
+    <ellipse cx="402" cy="108" rx="10" ry="4" transform="rotate(35 402 108)"/>
+    <path d="M 442 256 Q 427 312 412 357 Q 402 387 397 417" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    <ellipse cx="430" cy="287" rx="11" ry="5" transform="rotate(-55 430 287)"/>
+    <ellipse cx="423" cy="317" rx="12" ry="5" transform="rotate(-50 423 317)"/>
+    <ellipse cx="416" cy="347" rx="12" ry="5" transform="rotate(-45 416 347)"/>
+    <ellipse cx="408" cy="377" rx="11" ry="5" transform="rotate(-40 408 377)"/>
+    <ellipse cx="402" cy="404" rx="10" ry="4" transform="rotate(-35 402 404)"/>
+  </g>
+
+  <!-- Decorative flourish dots above S -->
+  <circle cx="220" cy="135" r="3" fill="white" opacity="0.7"/>
+  <circle cx="256" cy="128" r="4" fill="white" opacity="0.85"/>
+  <circle cx="292" cy="135" r="3" fill="white" opacity="0.7"/>
+
+  <!-- Decorative lines flanking center dot -->
+  <line x1="170" y1="140" x2="210" y2="135" stroke="white" stroke-width="1.5" stroke-opacity="0.5" stroke-linecap="round"/>
+  <line x1="302" y1="135" x2="342" y2="140" stroke="white" stroke-width="1.5" stroke-opacity="0.5" stroke-linecap="round"/>
+
+  <!-- Central serif S with gradient and drop shadow -->
+  <text x="256" y="345" font-family="Georgia, 'Times New Roman', Times, serif" font-size="260" font-weight="700" fill="url(#sg)" text-anchor="middle" filter="url(#sshadow)">S</text>
+
+  <!-- Heartbeat pulse line below S -->
+  <path d="M 160 390 L 195 390 L 208 365 L 222 415 L 236 355 L 248 390 L 275 390 L 288 370 L 302 410 L 316 360 L 330 390 L 355 390" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+
+  <!-- Ornate flourish below pulse -->
+  <circle cx="230" cy="420" r="2.5" fill="white" opacity="0.6"/>
+  <circle cx="256" cy="423" r="3.5" fill="white" opacity="0.8"/>
+  <circle cx="282" cy="420" r="2.5" fill="white" opacity="0.6"/>
+
+  <!-- Orange accent seal - top-right corner -->
+  <circle cx="415" cy="97" r="22" fill="#FF7043" opacity="0.15"/>
+  <circle cx="415" cy="97" r="13" fill="#FF7043"/>
+  <path d="M 409 93 L 412 97 L 421 88" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
