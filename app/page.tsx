@@ -200,7 +200,7 @@ function Header() {
       <div className="site-container py-4 flex items-center justify-between gap-6">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2.5 shrink-0 group">
-          <div className="w-11 h-11 gradient-primary rounded-2xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
+          <div className="w-11 h-11 gradient-primary rounded-2xl flex items-center justify-center font-extrabold text-lg shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow ring-1 ring-[#FFD700]/50" style={{ color: '#FFD700' }}>
             S
           </div>
           <span className="text-2xl font-extrabold text-gray-900">
@@ -694,7 +694,7 @@ function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-6">
-              <div className="w-10 h-10 gradient-primary rounded-2xl flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-primary/20">S</div>
+              <div className="w-10 h-10 gradient-primary rounded-2xl flex items-center justify-center font-extrabold text-lg shadow-lg shadow-primary/20 ring-1 ring-[#FFD700]/50" style={{ color: '#FFD700' }}>S</div>
               <span className="text-xl font-extrabold">Sano<span className="text-primary">Viva</span><span className="text-accent text-sm">.ro</span></span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-6">
